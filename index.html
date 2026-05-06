@@ -14,7 +14,6 @@
     min-height: 100vh;
   }
 
-  /* HEADER */
   header {
     background: #1a1a1a;
     color: white;
@@ -28,6 +27,28 @@
   header h1 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; }
   header p { font-size: 0.78rem; color: #888; margin-top: 0.2rem; }
 
+  .header-right { display: flex; align-items: center; gap: 0.75rem; }
+
+  .sync-indicator {
+    font-size: 0.72rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .sync-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #666;
+    transition: background 0.3s;
+  }
+  .sync-dot.syncing { background: #f0a070; animation: pulse 1s infinite; }
+  .sync-dot.ok { background: #4a7c59; }
+  .sync-dot.error { background: #e05a3a; }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
   .countdown {
     background: rgba(255,255,255,0.08);
     border-radius: 10px;
@@ -38,7 +59,6 @@
   .countdown-num { font-size: 1.6rem; font-weight: 700; color: #f0a070; line-height: 1; }
   .countdown-lbl { font-size: 0.65rem; color: #666; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.15rem; }
 
-  /* LAYOUT */
   .layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -51,7 +71,6 @@
     .links-side { border-left: none; border-top: 1px solid #e8e4de; }
   }
 
-  /* SHARED PANEL */
   .panel { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
 
   .panel-header {
@@ -64,19 +83,10 @@
     flex-shrink: 0;
   }
 
-  .panel-title {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #888;
-  }
-
+  .panel-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #888; }
   .panel-meta { font-size: 0.78rem; color: #aaa; }
-
   .panel-body { flex: 1; overflow-y: auto; padding: 1rem 1.25rem; }
   .panel-body::-webkit-scrollbar { width: 4px; }
-  .panel-body::-webkit-scrollbar-track { background: transparent; }
   .panel-body::-webkit-scrollbar-thumb { background: #ddd; border-radius: 99px; }
 
   .panel-footer {
@@ -86,7 +96,6 @@
     flex-shrink: 0;
   }
 
-  /* TASKS */
   .tasks-side { border-right: 1px solid #e8e4de; }
 
   .task-item {
@@ -95,9 +104,7 @@
     gap: 0.75rem;
     padding: 0.6rem 0;
     border-bottom: 1px solid #f0ede8;
-    group: true;
   }
-
   .task-item:last-child { border-bottom: none; }
 
   .task-cb {
@@ -113,7 +120,6 @@
     justify-content: center;
     transition: all 0.15s;
   }
-
   .task-cb.checked { background: #4a7c59; border-color: #4a7c59; }
   .task-cb.checked::after { content: '✓'; color: white; font-size: 0.65rem; font-weight: 700; }
 
@@ -123,18 +129,12 @@
   .task-del {
     background: none; border: none; cursor: pointer;
     color: #ddd; font-size: 0.9rem; padding: 2px 4px;
-    transition: color 0.15s; flex-shrink: 0;
-    opacity: 0;
+    transition: color 0.15s; flex-shrink: 0; opacity: 0;
   }
-
   .task-item:hover .task-del { opacity: 1; }
   .task-del:hover { color: #e05a3a; }
 
-  /* Add task input */
-  .add-row {
-    display: flex;
-    gap: 0.5rem;
-  }
+  .add-row { display: flex; gap: 0.5rem; }
 
   .add-row input {
     flex: 1;
@@ -148,7 +148,6 @@
     outline: none;
     transition: border-color 0.15s;
   }
-
   .add-row input:focus { border-color: #c84b2f; }
 
   .add-row button {
@@ -164,16 +163,13 @@
     transition: background 0.15s;
     white-space: nowrap;
   }
-
   .add-row button:hover { background: #333; }
+  .add-row button:disabled { background: #999; cursor: not-allowed; }
 
   .progress-wrap { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; }
   .progress-track { flex: 1; height: 3px; background: #e8e4de; border-radius: 99px; overflow: hidden; }
   .progress-fill { height: 100%; background: #4a7c59; border-radius: 99px; transition: width 0.4s ease; }
   .progress-txt { font-size: 0.72rem; color: #aaa; white-space: nowrap; }
-
-  /* LINKS */
-  .links-side { }
 
   .link-add-form { display: flex; flex-direction: column; gap: 0.4rem; }
 
@@ -189,9 +185,7 @@
     transition: border-color 0.15s;
     width: 100%;
   }
-
   .link-add-form input:focus { border-color: #c84b2f; }
-
   .link-add-row { display: flex; gap: 0.4rem; }
 
   .link-add-form button {
@@ -207,8 +201,8 @@
     transition: background 0.15s;
     flex-shrink: 0;
   }
-
   .link-add-form button:hover { background: #333; }
+  .link-add-form button:disabled { background: #999; cursor: not-allowed; }
 
   .link-item {
     display: flex;
@@ -216,11 +210,7 @@
     gap: 0.75rem;
     padding: 0.65rem 0;
     border-bottom: 1px solid #f0ede8;
-    text-decoration: none;
-    color: inherit;
-    group: true;
   }
-
   .link-item:last-child { border-bottom: none; }
 
   .link-favicon {
@@ -235,7 +225,6 @@
     flex-shrink: 0;
     overflow: hidden;
   }
-
   .link-favicon img { width: 18px; height: 18px; object-fit: contain; }
 
   .link-info { flex: 1; min-width: 0; }
@@ -251,20 +240,14 @@
     text-decoration: none;
     flex-shrink: 0;
     transition: all 0.15s;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
   }
-
   .link-open:hover { background: #1a1a1a; color: white; }
 
   .link-del {
     background: none; border: none; cursor: pointer;
     color: #ddd; font-size: 0.85rem; padding: 2px 4px;
-    transition: color 0.15s; flex-shrink: 0;
-    opacity: 0;
+    transition: color 0.15s; flex-shrink: 0; opacity: 0;
   }
-
   .link-item:hover .link-del { opacity: 1; }
   .link-del:hover { color: #e05a3a; }
 
@@ -279,15 +262,19 @@
     <h1>🏡 Vores flytning</h1>
     <p>1. september 2026</p>
   </div>
-  <div class="countdown">
-    <div class="countdown-num" id="daysLeft">—</div>
-    <div class="countdown-lbl">dage tilbage</div>
+  <div class="header-right">
+    <div class="sync-indicator">
+      <div class="sync-dot" id="syncDot"></div>
+      <span id="syncTxt">Forbinder…</span>
+    </div>
+    <div class="countdown">
+      <div class="countdown-num" id="daysLeft">—</div>
+      <div class="countdown-lbl">dage tilbage</div>
+    </div>
   </div>
 </header>
 
 <div class="layout">
-
-  <!-- TO DO -->
   <div class="panel tasks-side">
     <div class="panel-header">
       <span class="panel-title">To do</span>
@@ -297,7 +284,7 @@
     <div class="panel-footer">
       <div class="add-row">
         <input type="text" id="taskInput" placeholder="Tilføj opgave…" onkeydown="if(event.key==='Enter')addTask()">
-        <button onclick="addTask()">Tilføj</button>
+        <button id="taskBtn" onclick="addTask()">Tilføj</button>
       </div>
       <div class="progress-wrap">
         <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
@@ -306,7 +293,6 @@
     </div>
   </div>
 
-  <!-- LINKS -->
   <div class="panel links-side">
     <div class="panel-header">
       <span class="panel-title">Links</span>
@@ -321,74 +307,129 @@
         </div>
         <div class="link-add-row">
           <input type="text" id="linkNote" placeholder="Note (valgfri)" style="flex:1">
-          <button onclick="addLink()">Gem</button>
+          <button id="linkBtn" onclick="addLink()">Gem</button>
         </div>
       </div>
     </div>
   </div>
-
 </div>
 
 <script>
+const BIN_ID = '69fb95d4c0954111d8e7eba5';
+const API_KEY = '$2a$10$NFfrPQyKosAR51vCj3/FSO5YbFOSGTcbVc26AeTNw2Ai00gHEkU0i';
+const BASE = 'https://api.jsonbin.io/v3/b/' + BIN_ID;
+
 let data = { tasks: [], links: [] };
+let saveTimer = null;
+let pollTimer = null;
+let lastVersion = null;
 
-function save() { localStorage.setItem('flytning_simple', JSON.stringify(data)); }
-function load() {
-  try { const r = localStorage.getItem('flytning_simple'); if (r) data = JSON.parse(r); } catch(e){}
-}
-
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// Countdown
+// ── Countdown ──────────────────────────────────────────────────────────────
 (function() {
   const d = Math.ceil((new Date('2026-09-01') - new Date()) / 86400000);
   document.getElementById('daysLeft').textContent = d > 0 ? d : '🎉';
 })();
+
+// ── Sync UI ────────────────────────────────────────────────────────────────
+function setSyncState(state) {
+  const dot = document.getElementById('syncDot');
+  const txt = document.getElementById('syncTxt');
+  dot.className = 'sync-dot ' + state;
+  if (state === 'syncing') txt.textContent = 'Gemmer…';
+  else if (state === 'ok') txt.textContent = 'Synkroniseret';
+  else if (state === 'error') txt.textContent = 'Fejl – prøv igen';
+}
+
+// ── API ────────────────────────────────────────────────────────────────────
+async function fetchData() {
+  try {
+    const r = await fetch(BASE + '/latest', {
+      headers: { 'X-Master-Key': API_KEY }
+    });
+    if (!r.ok) throw new Error();
+    const json = await r.json();
+    // Only update if remote has changed
+    if (json.metadata && json.metadata.version !== lastVersion) {
+      lastVersion = json.metadata.version;
+      data = json.record;
+      renderAll();
+    }
+    setSyncState('ok');
+  } catch(e) {
+    setSyncState('error');
+  }
+}
+
+async function pushData() {
+  setSyncState('syncing');
+  try {
+    const r = await fetch(BASE, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': API_KEY
+      },
+      body: JSON.stringify(data)
+    });
+    if (!r.ok) throw new Error();
+    const json = await r.json();
+    if (json.metadata) lastVersion = json.metadata.version;
+    setSyncState('ok');
+  } catch(e) {
+    setSyncState('error');
+  }
+}
+
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(pushData, 600);
+}
+
+// Poll every 10 seconds for partner's changes
+function startPolling() {
+  pollTimer = setInterval(fetchData, 10000);
+}
 
 // ── TASKS ──────────────────────────────────────────────────────────────────
 function addTask() {
   const inp = document.getElementById('taskInput');
   const text = inp.value.trim();
   if (!text) return;
-  data.tasks.push({ id: 't'+Date.now(), text, done: false });
+  data.tasks.push({ id: 't' + Date.now(), text, done: false });
   inp.value = '';
-  save(); renderTasks();
+  renderTasks();
+  scheduleSave();
 }
 
 function toggleTask(id) {
   const t = data.tasks.find(t => t.id === id);
-  if (t) { t.done = !t.done; save(); renderTasks(); }
+  if (t) { t.done = !t.done; renderTasks(); scheduleSave(); }
 }
 
 function deleteTask(id) {
   data.tasks = data.tasks.filter(t => t.id !== id);
-  save(); renderTasks();
+  renderTasks(); scheduleSave();
 }
 
 function renderTasks() {
   const done = data.tasks.filter(t => t.done).length;
   const total = data.tasks.length;
-  const left = total - done;
-  const pct = total > 0 ? Math.round(done/total*100) : 0;
+  const pct = total > 0 ? Math.round(done / total * 100) : 0;
 
-  document.getElementById('taskMeta').textContent = left + ' tilbage';
+  document.getElementById('taskMeta').textContent = (total - done) + ' tilbage';
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressTxt').textContent = pct + ' %';
 
   const el = document.getElementById('taskList');
-  if (data.tasks.length === 0) {
+  if (!data.tasks.length) {
     el.innerHTML = `<div class="empty"><div class="icon">✅</div>Ingen opgaver endnu</div>`;
     return;
   }
-
-  // Show undone first, then done
-  const sorted = [...data.tasks.filter(t=>!t.done), ...data.tasks.filter(t=>t.done)];
+  const sorted = [...data.tasks.filter(t => !t.done), ...data.tasks.filter(t => t.done)];
   el.innerHTML = sorted.map(t => `
     <div class="task-item">
-      <div class="task-cb ${t.done?'checked':''}" onclick="toggleTask('${t.id}')"></div>
-      <span class="task-text ${t.done?'done':''}" onclick="toggleTask('${t.id}')">${esc(t.text)}</span>
+      <div class="task-cb ${t.done ? 'checked' : ''}" onclick="toggleTask('${t.id}')"></div>
+      <span class="task-text ${t.done ? 'done' : ''}" onclick="toggleTask('${t.id}')">${esc(t.text)}</span>
       <button class="task-del" onclick="deleteTask('${t.id}')">✕</button>
     </div>
   `).join('');
@@ -399,44 +440,40 @@ function prefillLinkTitle() {
   const titleInp = document.getElementById('linkTitle');
   if (titleInp.value) return;
   try {
-    const url = new URL(document.getElementById('linkUrl').value);
-    titleInp.placeholder = url.hostname.replace('www.','');
-  } catch(e){}
+    titleInp.placeholder = new URL(document.getElementById('linkUrl').value).hostname.replace('www.', '');
+  } catch(e) {}
 }
 
 function addLink() {
   const url = document.getElementById('linkUrl').value.trim();
   if (!url) return;
   let title = document.getElementById('linkTitle').value.trim();
-  if (!title) { try { title = new URL(url).hostname.replace('www.',''); } catch(e) { title = url; } }
+  if (!title) { try { title = new URL(url).hostname.replace('www.', ''); } catch(e) { title = url; } }
   const note = document.getElementById('linkNote').value.trim();
-  data.links.push({ id: 'l'+Date.now(), url, title, note });
+  data.links.push({ id: 'l' + Date.now(), url, title, note });
   document.getElementById('linkUrl').value = '';
   document.getElementById('linkTitle').value = '';
   document.getElementById('linkNote').value = '';
   document.getElementById('linkTitle').placeholder = 'Titel';
-  save(); renderLinks();
+  renderLinks();
+  scheduleSave();
 }
 
 function deleteLink(id) {
   data.links = data.links.filter(l => l.id !== id);
-  save(); renderLinks();
-}
-
-function getFavicon(url) {
-  try { return `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=32`; }
-  catch(e) { return null; }
+  renderLinks(); scheduleSave();
 }
 
 function renderLinks() {
   document.getElementById('linkMeta').textContent = data.links.length + ' gemt';
   const el = document.getElementById('linkList');
-  if (data.links.length === 0) {
+  if (!data.links.length) {
     el.innerHTML = `<div class="empty"><div class="icon">🔗</div>Ingen links endnu</div>`;
     return;
   }
   el.innerHTML = data.links.map(l => {
-    const fav = getFavicon(l.url);
+    let fav = null;
+    try { fav = `https://www.google.com/s2/favicons?domain=${new URL(l.url).hostname}&sz=32`; } catch(e) {}
     return `
       <div class="link-item">
         <div class="link-favicon">
@@ -444,7 +481,7 @@ function renderLinks() {
         </div>
         <div class="link-info">
           <div class="link-name">${esc(l.title)}</div>
-          ${l.note ? `<div class="link-note">${esc(l.note)}</div>` : `<div class="link-note">${esc(l.url)}</div>`}
+          <div class="link-note">${esc(l.note || l.url)}</div>
         </div>
         <a class="link-open" href="${esc(l.url)}" target="_blank" rel="noopener">Åbn ↗</a>
         <button class="link-del" onclick="deleteLink('${l.id}')">✕</button>
@@ -453,9 +490,14 @@ function renderLinks() {
   }).join('');
 }
 
-load();
-renderTasks();
-renderLinks();
+function renderAll() { renderTasks(); renderLinks(); }
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+fetchData().then(startPolling);
 </script>
 </body>
 </html>
